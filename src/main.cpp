@@ -8,7 +8,7 @@ int main(int argv, const char** argc){
         printf("GLFW could not be intiailized.");
         return 1;
     }
-    window = glfwCreateWindow(500,500,"Hello World!", NULL,NULL);
+    window = glfwCreateWindow(2440,1440,"Hello World!", NULL,NULL);
     if(!window){
         printf("Could not open the window.\n");
         return 1;
