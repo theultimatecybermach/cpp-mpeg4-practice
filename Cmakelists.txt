@@ -3,4 +3,20 @@ project(cpp-mpeg4 C CXX)
 set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(lib/glfw)
 add_executable(cpp-mpeg4 src/main.cpp)
-target_link_libraries(cpp-mpeg4 glfw)
+if(WIN32)
+    list(APPEND ADDONS
+        "-lglu32 -lopengl32"
+    )
+    set(CMAKE_EXE_LINKER_FLAGS "-std=gnu99 -static -static-libgcc -static-libstdc++ -mwindows")
+elseif(APPLE)
+    list(APPEND ADDONS 
+        "-framework OpenGl"
+    )
+else(
+    list(APPEND ADDONS 
+        "-lGL -lGLU -lX11"
+    )
+)
+
+endif()
+target_link_libraries(cpp-mpeg4 glfw ${ADDONS})
